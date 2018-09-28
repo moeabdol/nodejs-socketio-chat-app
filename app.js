@@ -14,6 +14,9 @@ const server = app.listen(3000, err => {
 const io = require('socket.io')(server);
 
 io.on('connection', socket => {
-  console.log('on connection');
-  console.log(socket.id);
+  console.log('on connection', socket.id);
+
+  socket.on('chat', data => {
+    io.sockets.emit('chat', data);
+  });
 });
